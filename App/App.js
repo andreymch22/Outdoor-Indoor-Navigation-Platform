@@ -1,6 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import MapView from 'react-native-maps';
+import React, { useState } from 'react';
+import Main from './src/components/MapScreen';
+import Login from './src/components/Login'
+import MapScreen from './src/components/MapScreen';
+
 
 //firebase/////////////////
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
@@ -14,24 +17,11 @@ const provider = new GoogleAuthProvider();
 ////////////////////////////
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Outdoor/Indoor Navigation Platform</Text>
-      <StatusBar style="auto" />
-      <MapView style={styles.map} />
-    </View>
-  );
+  var flag = 1 // false= 0
+  if (flag) {
+    return <Login />
+  } else {
+    return <MapScreen />
+  }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  map: {
-    width: '95%',
-    height: '90%',
-  },
-});
