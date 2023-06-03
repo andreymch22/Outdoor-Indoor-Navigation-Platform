@@ -1,0 +1,7 @@
+Inicio de sesión por correo:
+
+Correo electrónico: usuario@usuario.com
+Contraseña: Usuario123#
+
+
+Inicio de sesión por medio de Google:

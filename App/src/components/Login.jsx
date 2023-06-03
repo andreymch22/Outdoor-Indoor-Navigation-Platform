@@ -3,11 +3,47 @@ import { SafeAreaView, StyleSheet, TextInput, Button, Text, Alert, View, Touchab
 import MapScreen from './MapScreen';
 import AppBar from './AppBar';
 import Logo from '../../src/assets/Logo.png';
+import { initializeApp } from 'firebase/app';
+import { firebaseConfig } from '../../firebase-config';
+import { getAuth, signInWithCredential, signInWithEmailAndPassword } from 'firebase/auth';
+import { useNavigation } from '@react-navigation/native';
+
 
 const Login = () => {
-    const [mail, onChangeMail] = React.useState('');
+    //variables para guardar el mail y el password
+    const [mail, onChangeMail] = React.useState('');                              
     const [password, onChangePassword] = React.useState('');
+    const navigation = useNavigation();
     //const history = useHistory();
+
+
+    //Dos funciones, 1 para crear la cuenta y otra para el login
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    //función para inicio de sesión
+    const handleSignIn = () => {
+        signInWithEmailAndPassword(auth, mail, password)
+        .then((userCredential) => {
+            console.log('Inicio de sesión correcto.')
+            const user = userCredential.user;//guarda las credenciales en la variable user
+            console.log(user)
+            navigation.navigate('MapScreen');
+        })
+        .catch(error => {
+            console.log(error)
+            Alert.alert(error.message)
+        })
+    }
+
+    //funcion crear cuenta pendiente, falta bot[on de crear cuenta
+
+
+    //////////////////////////////////////////////////////////
+
+
+
+
     return (
             <View style={styles.container}>
                 <View style={{alignItems: 'center', backgroundColor: 'white'}}>
@@ -19,14 +55,14 @@ const Login = () => {
                 <Text style={styles.title}>Ingresar a Navegación TecSC</Text>
                 <TextInput
                     style={styles.input}
-                    onChangeText={onChangeMail}
+                    onChangeText={onChangeMail} //lo que se reciba en el TextInput, lo guardara en la variable onChanceMail
                     value={mail}
                     placeholder="Correo electronico"
                     keyboardType='email-address'
                 />
                 <TextInput
                     style={styles.input}
-                    onChangeText={onChangePassword}
+                    onChangeText={onChangePassword}//lo que se reciba en el TextInput, lo guardara en la variable onChancePassword
                     value={password}
                     placeholder="Contraseña"
                     secureTextEntry={true}
@@ -34,7 +70,8 @@ const Login = () => {
                 <Button
                     title="Ingresar"
                     //onPress={() => <MapScreen />}
-                    onPress={() => Alert.alert('Simple Button pressed')}
+                    //onPress={() => Alert.alert('Simple Button pressed')}
+                    onPress={handleSignIn} // Al presionar el botón llama la función de handleSignIn
                 />
                 <Separator />
 
