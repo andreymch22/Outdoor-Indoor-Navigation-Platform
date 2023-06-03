@@ -1,14 +1,13 @@
 import React from "react"
 import { View, StyleSheet, Text, ScrollView, TouchableWithoutFeedback } from "react-native"
 import Constants from 'expo-constants'
-import { Link, useLocation } from "react-router-native"
 
 const AppBar = () => {
     return(
         <View style={styles.container} >
             <ScrollView horizontal style={styles.scroll} >
-                <AppBarTab to='/MapScreen'>Map Screen</AppBarTab> 
-                <AppBarTab to='/'>Sing Up</AppBarTab> 
+                <AppBarTab >Map Screen</AppBarTab> 
+                <AppBarTab >Sing Up</AppBarTab> 
             </ScrollView>
         </View>
     )
@@ -16,11 +15,10 @@ const AppBar = () => {
 
 const AppBarTab = ({children, to}) => {
     return (
-        <Link to={to} component={TouchableWithoutFeedback}>
             <Text style={styles.text}>
                 {children}
             </Text>
-        </Link>
+
     )
 }
 

@@ -1,17 +1,22 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet, TextInput, Button, Text, Alert, View, TouchableOpacity, Image } from 'react-native';
-import { Routes, Route, useHistory, Navigate } from 'react-router-native';
 import MapScreen from './MapScreen';
 import AppBar from './AppBar';
+import Logo from '../../src/assets/Logo.png';
 
 const Login = () => {
     const [mail, onChangeMail] = React.useState('');
     const [password, onChangePassword] = React.useState('');
     //const history = useHistory();
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Ingresar a Navegación TecSC</Text>
-            <SafeAreaView >
+            <View style={styles.container}>
+                <View style={{alignItems: 'center', backgroundColor: 'white'}}>
+                    <Image                        
+                        style={styles.logo}
+                        source={require('../../src/assets/Logo.png')}
+                    />
+                </View>
+                <Text style={styles.title}>Ingresar a Navegación TecSC</Text>
                 <TextInput
                     style={styles.input}
                     onChangeText={onChangeMail}
@@ -28,9 +33,8 @@ const Login = () => {
                 />
                 <Button
                     title="Ingresar"
-                    onPress={() => <MapScreen />}
-                //onPress={() => Alert.alert('Simple Button pressed')}
-                //onPress={() => history.push('/')}
+                    //onPress={() => <MapScreen />}
+                    onPress={() => Alert.alert('Simple Button pressed')}
                 />
                 <Separator />
 
@@ -41,8 +45,7 @@ const Login = () => {
                     />
                     <Text style={styles.text}> Ingresar con Google </Text>
                 </TouchableOpacity>
-            </SafeAreaView>
-        </View>
+            </View>
     );
 };
 
@@ -52,7 +55,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        marginHorizontal: 16,
+        marginHorizontal: 14,
+        backgroundColor: 'white',
     },
     title: {
         fontSize: 40,
@@ -92,6 +96,10 @@ const styles = StyleSheet.create({
         height: 30,
         width: 30,
     },
+    logo:{
+        width: 140,
+        height: 135,
+    }
 
 });
 
