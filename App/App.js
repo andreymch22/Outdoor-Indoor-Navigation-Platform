@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
-import Main from './src/components/Main';
 import { NavigationContainer } from '@react-navigation/native';
-import Login from './src/components/Login';
-import MapScreen from './src/components/MapScreen';
-
+import AuthNavigator from './src/navigations/AuthNavigator';
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Login />
+      <AuthNavigator />
     </NavigationContainer>
   );
 }

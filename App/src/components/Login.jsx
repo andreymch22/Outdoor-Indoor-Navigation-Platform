@@ -2,18 +2,20 @@ import React from 'react';
 import { SafeAreaView, StyleSheet, TextInput, Button, Text, Alert, View, TouchableOpacity, Image } from 'react-native';
 import MapScreen from './MapScreen';
 import AppBar from './AppBar';
-import Logo from '../../src/assets/Logo.png';
-
+//import Logo from '../../src/assets/Logo.png';
+import { COLORS, ROUTES, IMGS } from '../../constants';
+import { useNavigation } from '@react-navigation/native';
 const Login = () => {
     const [mail, onChangeMail] = React.useState('');
     const [password, onChangePassword] = React.useState('');
+    const navigation = useNavigation();
     //const history = useHistory();
     return (
             <View style={styles.container}>
                 <View style={{alignItems: 'center', backgroundColor: 'white'}}>
                     <Image                        
                         style={styles.logo}
-                        source={require('../../src/assets/Logo.png')}
+                        source={IMGS.logo}
                     />
                 </View>
                 <Text style={styles.title}>Ingresar a Navegación TecSC</Text>
@@ -33,18 +35,9 @@ const Login = () => {
                 />
                 <Button
                     title="Ingresar"
-                    //onPress={() => <MapScreen />}
-                    onPress={() => Alert.alert('Simple Button pressed')}
+                    onPress={() => navigation.navigate(ROUTES.MAP_SCREEN)}
+                    //onPress={() => Alert.alert('Simple Button pressed')}
                 />
-                <Separator />
-
-                <TouchableOpacity style={styles.googleBtn}>
-                    <Image
-                        source={{ uri: 'https://w7.pngwing.com/pngs/869/485/png-transparent-google-logo-computer-icons-google-text-logo-google-logo.png' }}
-                        style={styles.buttonImageIconStyle}
-                    />
-                    <Text style={styles.text}> Ingresar con Google </Text>
-                </TouchableOpacity>
             </View>
     );
 };

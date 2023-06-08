@@ -1,3 +1,3 @@
 export default {
-    logo: require('App/src/assets/Logo.png'),
+    logo: require('../src/assets/Logo.png'),
 };

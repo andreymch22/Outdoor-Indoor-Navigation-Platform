@@ -55,7 +55,6 @@ const stylesS = StyleSheet.create({
     },
 });
 
-//10.36302235879384, -84.51058163568169
 const initialRegion = {
     latitude: 10.36302235879384,
     longitude: -84.51058163568169,
