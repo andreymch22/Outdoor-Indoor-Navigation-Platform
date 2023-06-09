@@ -38,7 +38,8 @@ const Login = () => {
         })
         .catch(error => {
             console.log(error)
-            Alert.alert(error.message)
+            //Alert.alert(error.message)
+            Alert.alert("Usuario o contraseña incorrectos")
         })
     }
     //////////////////////////////////////////Login Firebase
