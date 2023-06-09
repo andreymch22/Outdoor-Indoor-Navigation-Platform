@@ -5,11 +5,45 @@ import AppBar from './AppBar';
 //import Logo from '../../src/assets/Logo.png';
 import { COLORS, ROUTES, IMGS } from '../../constants';
 import { useNavigation } from '@react-navigation/native';
+
+
+///////////////////Login Firebase
+import { initializeApp } from 'firebase/app';
+import { firebaseConfig } from '../../firebase-config';
+import { getAuth, signInWithCredential, signInWithEmailAndPassword } from 'firebase/auth';
+//////////////////Login Firebase
+
+
+
+
 const Login = () => {
     const [mail, onChangeMail] = React.useState('');
     const [password, onChangePassword] = React.useState('');
     const navigation = useNavigation();
     //const history = useHistory();
+    
+    //////////////////////////////////////////Login Firebase
+    //Dos funciones, 1 para crear la cuenta y otra para el login
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    //función para inicio de sesión
+    const handleSignIn = () => {
+        signInWithEmailAndPassword(auth, mail, password)
+        .then((userCredential) => {
+            console.log('Inicio de sesión correcto.')
+            const user = userCredential.user;//guarda las credenciales en la variable user
+            //console.log(user)
+            navigation.navigate(ROUTES.MAP_SCREEN);
+        })
+        .catch(error => {
+            console.log(error)
+            Alert.alert(error.message)
+        })
+    }
+    //////////////////////////////////////////Login Firebase
+    
+    
     return (
             <View style={styles.container}>
                 <View style={{alignItems: 'center', backgroundColor: 'white'}}>
@@ -35,8 +69,9 @@ const Login = () => {
                 />
                 <Button
                     title="Ingresar"
-                    onPress={() => navigation.navigate(ROUTES.MAP_SCREEN)}
+                    //onPress={() => navigation.navigate(ROUTES.MAP_SCREEN)}
                     //onPress={() => Alert.alert('Simple Button pressed')}
+                    onPress={handleSignIn} // Al presionar el botón llama la función de handleSignIn
                 />
             </View>
     );
