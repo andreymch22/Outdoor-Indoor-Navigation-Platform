@@ -5,18 +5,17 @@ import {Login, AppBar, MapScreen} from '../components';
 
 
 const Stack = createStackNavigator();
-// Navigator, Screen, Group
 
+//cambiar el initialRouteName a Login cuando se terminen los testing
 function AuthNavigator() {
     console.log(Stack);
     return (
-        <Stack.Navigator screenOptions={{}} initialRouteName={ROUTES.LOGIN}>
+        <Stack.Navigator screenOptions={{}} initialRouteName={ROUTES.MAP_SCREEN}>
             <Stack.Screen
                 name={ROUTES.LOGIN}
                 component={Login}
                 options={{ headerShown: false }}
             />
-            <Stack.Screen name={ROUTES.REGISTER} component={AppBar} />
             <Stack.Screen
                 name={ROUTES.MAP_SCREEN}
                 component={MapScreen}
